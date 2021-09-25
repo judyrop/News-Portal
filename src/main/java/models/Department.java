@@ -12,6 +12,14 @@ public class Department {
         this.employees_number = employees_number;
     }
 
+    public int getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(int department_id) {
+        this.department_id = department_id;
+    }
+
     public String getDepartment_name() {
         return department_name;
     }

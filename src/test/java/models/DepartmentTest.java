@@ -16,11 +16,11 @@ class DepartmentTest {
     void tearDown() {
     }
 
-//    @Test
-//      void  instantiatesCorrectly_true() {
-//
-//        assertEquals("true",testdepartment instanceof Department);
-//    }
+    @Test
+      void  DepartmentInstantiatesCorrectly_true() {
+    Department testdepartment = new Department("Software developers","section designed for users creating softwares of the company",20);
+        assertEquals(true,testdepartment instanceof Department);
+    }
 
     @Test
     void getDepartment_name() {

@@ -5,7 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
-
+    @Test
+    void  UserInstantiatesCorrectly_true() {
+        User testUser = new User("Keilah","Software developers","back-end developer");
+        assertEquals(true,testUser instanceof User);
+    }
     @Test
     void getUser_name() {
         User testUser = new User("Keilah","Software developers","back-end developer");

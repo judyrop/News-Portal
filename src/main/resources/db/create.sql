@@ -1,6 +1,6 @@
 SET MODE PostgreSQL;
 CREATE TABLE IF NOT EXISTS departments (
-        department_id PRIMARY KEY auto_inrement,
+        department_id int PRIMARY KEY auto_increment,
         department_name VARCHAR ,
         department_description VARCHAR ,
         employees_number int

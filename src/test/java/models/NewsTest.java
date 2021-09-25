@@ -15,7 +15,11 @@ class NewsTest {
     @AfterEach
     void tearDown() {
     }
-
+    @Test
+    void  NewsInstantiatesCorrectly_true() {
+        News testNews = new News("EventNews","General");
+        assertEquals(true,testNews instanceof News);
+    }
     @Test
     void getName() {
         News testNews = new News("EventNews","General");
