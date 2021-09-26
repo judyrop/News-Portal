@@ -36,10 +36,10 @@ class Sql2oDepartmentDaoTest {
 
     @Test
     void existingDepartmentsCanBeFoundById() throws Exception {
-        Department department = new Department("","",20);
+        Department department = new Department("Software developers","Section where developers creates different software of the company",20);
         DepartmentDao.add(department);
         Department foundDepartment = DepartmentDao.findById(department.getDepartment_id());
-        assertEquals(department,foundDepartment);
+        assertEquals(department,foundDepartment.getDepartment_id());
     }
 
     @Test

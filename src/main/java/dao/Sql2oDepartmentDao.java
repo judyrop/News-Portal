@@ -17,25 +17,25 @@ public class Sql2oDepartmentDao implements DepartmentDao{
     public void add(Department department) {
 String sql = "INSERT INTO departments(department_name,department_description,employees_number) VALUES(:department_name,:department_description,:employees_number)";
 try (Connection con = sql2o.open()){
-    int id = (int) con.createQuery(sql,true)
+    int department_id = (int) con.createQuery(sql,true)
             .bind(department)
             .executeUpdate()
             .getKey();
-    department.setDepartment_id(id);
+    department.setDepartment_id(department_id);
 
 } catch (Sql2oException ex) {
     System.out.println(ex);
 }
     }
 
+
     @Override
-    public Department findById(int id) {
+    public Department findById(int department_id) {
         try (Connection con = sql2o.open()){
-            return con.createQuery("SELECT  * FROM departments WHERE id = :id")
-                    .addParameter("id",id)
+            return con.createQuery("SELECT  * FROM departments WHERE department_id = :department_id")
+                    .addParameter("department_id",department_id)
                     .executeAndFetchFirst(Department.class);
         }
-        return null;
     }
     @Override
     public List<Department> getAll() {
@@ -45,8 +45,8 @@ try (Connection con = sql2o.open()){
         }
     }
     @Override
-    public void update(int department_id,String newDepartment_name) {
-String sql = "UPDATE departments SET department_name = :department_name WHERE id= :id";
+    public void update(int department_id, String newDepartment_name) {
+String sql = "UPDATE departments SET department_name = :department_name WHERE department_id= :department_id";
 try (Connection con = sql2o.open()){
     con.createQuery(sql)
             .addParameter("department_name", newDepartment_name)
@@ -57,7 +57,7 @@ try (Connection con = sql2o.open()){
     }
 
     @Override
-    public void delete() {
+    public void deleteById(int department_id) {
         String sql = "DELETE from departments WHERE department_id=:department_id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
@@ -66,5 +66,16 @@ try (Connection con = sql2o.open()){
         } catch (Sql2oException ex){
             System.out.println(ex);
         }
+    }
+
+    @Override
+    public void clearAll() {
+String sql = "DELETE from departments";
+try(Connection con = sql2o.open()){
+    con.createQuery(sql)
+            .executeUpdate();
+} catch (Sql2oException ex) {
+    System.out.println(ex);
+}
     }
 }
