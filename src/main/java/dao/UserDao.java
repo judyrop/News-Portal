@@ -8,8 +8,10 @@ public interface UserDao {
     void add (User user);
     List<User>getAll();
     List<User>findById();
-    void update();
+//    void update();
 //    void deleteById();
+
+    void update(int user_id, String newUser_name, String newUser_department, String newUser_role);
 
     void deleteById(int user_id);
 

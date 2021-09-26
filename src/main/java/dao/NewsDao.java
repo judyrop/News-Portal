@@ -8,8 +8,10 @@ import java.util.List;
 public interface NewsDao {
     void add( News news);
   List<News>getAll();
-    void update();
+//    void update();
 //    void deleteById();
+
+    void update(int news_id, String newName, String newType, String newDescription);
 
     void deleteById(int news_id);
 
