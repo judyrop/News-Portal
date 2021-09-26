@@ -9,6 +9,9 @@ public interface UserDao {
     List<User>getAll();
     List<User>findById();
     void update();
-    void deleteById();
+//    void deleteById();
+
+    void deleteById(int user_id);
+
     void clearAll();
 }

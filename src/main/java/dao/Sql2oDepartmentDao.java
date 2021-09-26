@@ -1,6 +1,7 @@
 package dao;
 
 import models.Department;
+import models.News;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -29,14 +30,14 @@ try (Connection con = sql2o.open()){
     }
 
 
-    @Override
-    public Department findById(int department_id) {
-        try (Connection con = sql2o.open()){
-            return con.createQuery("SELECT  * FROM departments WHERE department_id = :department_id")
-                    .addParameter("department_id",department_id)
-                    .executeAndFetchFirst(Department.class);
-        }
-    }
+//    @Override
+//    public Department findById(int department_id) {
+//        try (Connection con = sql2o.open()){
+//            return con.createQuery("SELECT  * FROM departments WHERE department_id = :department_id")
+//                    .addParameter("department_id",department_id)
+//                    .executeAndFetchFirst(Department.class);
+//        }
+//    }
     @Override
     public List<Department> getAll() {
         try(Connection con = sql2o.open()){
@@ -44,17 +45,17 @@ try (Connection con = sql2o.open()){
                     .executeAndFetch(Department.class);
         }
     }
-    @Override
-    public void update(int department_id, String newDepartment_name) {
-String sql = "UPDATE departments SET department_name = :department_name WHERE department_id= :department_id";
-try (Connection con = sql2o.open()){
-    con.createQuery(sql)
-            .addParameter("department_name", newDepartment_name)
-            .executeUpdate();
-} catch (Sql2oException ex) {
-    System.out.println(ex);
-}
-    }
+//    @Override
+//    public void update(int department_id, String newDepartment_name) {
+//String sql = "UPDATE departments SET department_name = :department_name WHERE department_id= :department_id";
+//try (Connection con = sql2o.open()){
+//    con.createQuery(sql)
+//            .addParameter("department_name", newDepartment_name)
+//            .executeUpdate();
+//} catch (Sql2oException ex) {
+//    System.out.println(ex);
+//}
+//    }
 
     @Override
     public void deleteById(int department_id) {
@@ -77,5 +78,17 @@ try(Connection con = sql2o.open()){
 } catch (Sql2oException ex) {
     System.out.println(ex);
 }
+    }
+    @Override
+    public void addNewsToDepartment(News news, Department department){
+        String sql = "INSERT INTO departments_news (news_id, department_id) VALUES (:news_id, :department_id)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("department_id", department.getDepartment_id())
+                    .addParameter("news_id", news.getNews_id())
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 }

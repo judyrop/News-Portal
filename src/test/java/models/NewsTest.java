@@ -17,13 +17,13 @@ class NewsTest {
     }
     @Test
     void  NewsInstantiatesCorrectly_true() {
-        News testNews = new News("EventNews","General");
+        News testNews = new News("Upcoming Event","General","The event will be virtual do to the pandemic");
         assertEquals(true,testNews instanceof News);
     }
     @Test
     void getName() {
-        News testNews = new News("EventNews","General");
-        assertEquals("EventNews",testNews.getName());
+        News testNews = new News("Upcoming Event","General","The event will be virtual do to the pandemic");
+        assertEquals("Upcoming Event",testNews.getName());
     }
 
     @Test
@@ -33,11 +33,19 @@ class NewsTest {
 
     @Test
     void getType() {
-        News testNews = new News("EventNews","General");
+        News testNews = new News("Upcoming Event","General","The event will be virtual do to the pandemic");
         assertEquals("General",testNews.getType());
     }
 
     @Test
     void setType() {
+    }
+    @Test
+    void getDescription() {
+        News testNews = new News("Upcoming Event","General","The event will be virtual do to the pandemic");
+        assertEquals("The event will be virtual do to the pandemic",testNews.getDescription());
+    }
+    @Test
+    void setDescription() {
     }
 }

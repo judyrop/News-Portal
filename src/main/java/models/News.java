@@ -4,10 +4,20 @@ public class News {
     private int news_id;
 private String name;
 private String type;
+private String description;
 
-    public News(String name, String type) {
+    public News(String name, String type, String description) {
         this.name = name;
         this.type = type;
+        this.description = description;
+    }
+
+    public int getNews_id() {
+        return news_id;
+    }
+
+    public void setNews_id(int news_id) {
+        this.news_id = news_id;
     }
 
     public String getName() {
@@ -24,5 +34,12 @@ private String type;
 
     public void setType(String type) {
         this.type = type;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
