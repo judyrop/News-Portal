@@ -35,11 +35,18 @@ public class Sql2oUserDao implements UserDao{
                     .executeAndFetch(User.class);
         }
     }
-
     @Override
-    public List<User> findById() {
-        return null;
+    public List<User> getAllUsersByDepartment(int department_id) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM users WHERE department_id = :department_id")
+                    .addParameter("department_id", department_id)
+                    .executeAndFetch(User.class);
+        }
     }
+//    @Override
+//    public List<User> findById() {
+//        return null;
+//    }
 
     @Override
     public void update(int user_id, String newUser_name, String newUser_department, String newUser_role) {
