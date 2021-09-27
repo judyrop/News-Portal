@@ -61,5 +61,25 @@ public class App {
         after((req, res) ->{
             res.type("application/json");
         });
+        get("/departments", "application/json", (req, res) -> {
+            System.out.println(departmentDao.getAll());
+
+            if(departmentDao.getAll().size() > 0){
+                return gson.toJson(departmentDao.getAll());
+            }
+
+            else {
+                return "{\"message\":\"I'm sorry, but no departments are currently listed in the database.\"}";
+            }
+
+        });
+        get("/departments/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            int department_id = Integer.parseInt(req.params("id"));
+            Department departmentToFind = departmentDao.findById(department_id);
+            if (departmentToFind == null){
+                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("department_id")));
+            }
+            return gson.toJson(departmentToFind);
+        });
     }
 }
