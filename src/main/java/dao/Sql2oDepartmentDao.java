@@ -21,6 +21,7 @@ String sql = "INSERT INTO departments(department_name,department_description,emp
 try (Connection con = sql2o.open()){
     int department_id = (int) con.createQuery(sql,true)
             .bind(department)
+            .throwOnMappingFailure(false)
             .executeUpdate()
             .getKey();
     department.setDepartment_id(department_id);
@@ -31,14 +32,14 @@ try (Connection con = sql2o.open()){
     }
 
 
-//    @Override
-//    public Department findById(int department_id) {
-//        try (Connection con = sql2o.open()){
-//            return con.createQuery("SELECT  * FROM departments WHERE department_id = :department_id")
-//                    .addParameter("department_id",department_id)
-//                    .executeAndFetchFirst(Department.class);
-//        }
-//    }
+    @Override
+    public Department findById(int department_id) {
+        try (Connection con = sql2o.open()){
+            return con.createQuery("SELECT  * FROM departments WHERE department_id = :department_id")
+                    .addParameter("department_id",department_id)
+                    .executeAndFetchFirst(Department.class);
+        }
+    }
     @Override
     public List<Department> getAll() {
         try(Connection con = sql2o.open()){
