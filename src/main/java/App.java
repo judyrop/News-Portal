@@ -9,8 +9,7 @@ import org.sql2o.Sql2o;
 
 import java.sql.Connection;
 
-import static spark.Spark.post;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
 public class App {
     public static void main(String[] args) {
@@ -26,17 +25,17 @@ public class App {
         newsDao = new Sql2oNewsDao(sql2o);
         departmentDao = new Sql2oDepartmentDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
-        conn =  Sql2o.open();
+//        conn =  Sql2o.open();
 
-        post("/departments/:department_id/users/new", "application/json", (req, res) -> {
-            int department_id = Integer.parseInt(req.params("department_id"));
-            User user = gson.fromJson(req.body(), User.class);
-
-            user.setDepartment_id(department_id);
-            userDao.add(user);
-            res.status(201);
-            return gson.toJson(user);
-        });
+//        post("/departments/:department_id/users/new", "application/json", (req, res) -> {
+//            int department_id = Integer.parseInt(req.params("department_id"));
+//            User user = gson.fromJson(req.body(), User.class);
+//
+//            user.setDepartment_id(department_id);
+//            userDao.add(user);
+//            res.status(201);
+//            return gson.toJson(user);
+//        });
         post("/news/new", "application/json", (req, res) -> {
             News news = gson.fromJson(req.body(), News.class);
             newsDao.add(news);
@@ -49,6 +48,15 @@ public class App {
             res.status(201);
             return gson.toJson(department);
         });
-
+        post("/users/new", "application/json", (req, res) -> {
+            User user = gson.fromJson(req.body(), User.class);
+           userDao.add(user);
+            res.status(201);
+            return gson.toJson(user);
+        });
+        //filter
+        after((req, res) ->{
+            res.type("application/json");
+        });
     }
 }
