@@ -54,6 +54,9 @@ public class App {
             res.status(201);
             return gson.toJson(user);
         });
+        get("/news", "application/json", (req, res) -> {
+            return gson.toJson(newsDao.getAll());
+        });
         //filter
         after((req, res) ->{
             res.type("application/json");
