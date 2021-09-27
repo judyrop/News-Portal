@@ -8,6 +8,7 @@ import models.User;
 import org.sql2o.Sql2o;
 
 import java.sql.Connection;
+import java.util.List;
 
 import static spark.Spark.*;
 
@@ -80,6 +81,20 @@ public class App {
                 throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("department_id")));
             }
             return gson.toJson(departmentToFind);
+        });
+        get("/departments/:id/users", "application/json", (req, res) -> {
+            int department_id = Integer.parseInt(req.params("id"));
+
+            Department departmentToFind = departmentDao.findById(department_id);
+            List<User> allUsers;
+
+            if (departmentToFind == null){
+                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
+            }
+
+            allUsers = userDao.getAllUsersByDepartment(department_id);
+
+            return gson.toJson(allUsers);
         });
     }
 }
