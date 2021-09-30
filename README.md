@@ -9,7 +9,7 @@ The application is an api that creates queries and retrieve scopes of news in di
 Installed java jdk and using gradle,spark framework,postgresql databases and postman  on my computer.
 A user can also clone this project from the link github link: judyrop
 ## Known bugs
-FCCurrently no known error as i am just working on it still.
+Currently existing known error is that having issue on database but it can fetch data.
 ## Support and Contact Details
 Phone number: 0722887764
 Email:judyrop@student.moringaschool.com
