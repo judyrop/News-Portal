@@ -30,6 +30,8 @@ class DepartmentTest {
 
     @Test
     void setDepartment_name() {
+        Department testdepartment = new Department("Software developers","section designed for users creating softwares of the company",20);
+        assertNotEquals("developers",testdepartment.getDepartment_name());
     }
 
     @Test
@@ -40,6 +42,8 @@ class DepartmentTest {
 
     @Test
     void setDepartment_description() {
+        Department testdepartment = new Department("Software developers","section designed for users creating softwares of the company",20);
+        assertNotEquals("users creating softwares of the company",testdepartment.getDepartment_description());
     }
 
     @Test
@@ -50,5 +54,8 @@ class DepartmentTest {
 
     @Test
     void setEmployees_number() {
+        Department testdepartment = new Department("Software developers","section designed for users creating softwares of the company",20);
+        assertNotEquals(2,testdepartment.getEmployees_number());
     }
+
 }

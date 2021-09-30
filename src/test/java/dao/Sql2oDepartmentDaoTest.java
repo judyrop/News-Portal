@@ -33,7 +33,7 @@ class Sql2oDepartmentDaoTest {
         DepartmentDao.add(department);
         assertNotEquals(originalDepartment_Id,department.getDepartment_id());
     }
-//
+
 //    @Test
 //    void existingDepartmentsCanBeFoundById() throws Exception {
 //        Department department = new Department("Software developers","Section where developers creates different software of the company",20);

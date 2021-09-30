@@ -18,6 +18,8 @@ class UserTest {
 
     @Test
     void setUser_name() {
+        User testUser = new User("Keilah","Software developers","back-end developer");
+        assertNotEquals("Gilah",testUser.getUser_name());
     }
 
     @Test
@@ -28,6 +30,8 @@ class UserTest {
 
     @Test
     void setUser_department() {
+        User testUser = new User("Keilah","Software developers","back-end developer");
+        assertNotEquals("Software ",testUser.getUser_department());
     }
 
     @Test
@@ -38,5 +42,7 @@ class UserTest {
 
     @Test
     void setUser_role() {
+        User testUser = new User("Keilah","Software developers","back-end developer");
+        assertNotEquals("front-end developer",testUser.getUser_role());
     }
 }

@@ -28,7 +28,8 @@ class NewsTest {
 
     @Test
     void setName() {
-
+        News testNews = new News("Upcoming Event","General","The event will be virtual do to the pandemic");
+        assertNotEquals("Event",testNews.getName());
     }
 
     @Test
@@ -39,6 +40,8 @@ class NewsTest {
 
     @Test
     void setType() {
+        News testNews = new News("Upcoming Event","General","The event will be virtual do to the pandemic");
+        assertNotEquals("All",testNews.getType());
     }
     @Test
     void getDescription() {
@@ -47,5 +50,7 @@ class NewsTest {
     }
     @Test
     void setDescription() {
+        News testNews = new News("Upcoming Event","General","The event will be virtual do to the pandemic");
+        assertNotEquals("The event will be blended do to the pandemic",testNews.getDescription());
     }
 }
